@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.3.0-b170407.2038 svn-revision#2eaca54d17a59d265c6fe886b7fd0027836c766c.--><xsd:schema targetNamespace="http://host.wm6.swisslog.com/" xmlns:ns0="http://host.wm6.swisslog.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="orderMaster">
+    <xsd:sequence>
+      <xsd:element name="orderMasterMessageRequest" type="ns0:cpOrderMasterMessageRequest" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="orderMasterResponse">
+    <xsd:sequence>
+      <xsd:element name="orderMasterMessageResponse" type="ns0:cpOrderMasterMessageResponse" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="cpOrderMasterMessageRequest">
+    <xsd:complexContent>
+      <xsd:extension base="ns0:messageRequest">
+        <xsd:sequence>
+          <xsd:element name="orderGroup" type="ns0:hostOrderGroup" minOccurs="0"/>
+          <xsd:element name="order" type="ns0:cpHostOrder" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="messageRequest" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="messageHeader" type="ns0:messageHeader"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="messageHeader">
+    <xsd:sequence>
+      <xsd:element name="msgId" type="xsd:string"/>
+      <xsd:element name="msgType" type="xsd:string"/>
+      <xsd:element name="transCode" type="xsd:string"/>
+      <xsd:element name="msgTime" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="sender" type="xsd:string"/>
+      <xsd:element name="receiver" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="hostOrderGroup">
+    <xsd:sequence>
+      <xsd:element name="orderGroupId" type="xsd:string"/>
+      <xsd:element name="dispatchDate" type="xsd:dateTime"/>
+      <xsd:element name="priority" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="cpHostOrder">
+    <xsd:sequence>
+      <xsd:element name="carrier" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="orderId" type="xsd:string"/>
+      <xsd:element name="orderType" type="xsd:string"/>
+      <xsd:element name="dispatchDate" type="xsd:dateTime"/>
+      <xsd:element name="orderDate" type="xsd:dateTime" minOccurs="0"/>
+      <xsd:element name="priority" type="xsd:int"/>
+      <xsd:element name="customer" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="shippingAddress" type="ns0:hostOrderAddress" minOccurs="0"/>
+      <xsd:element name="billingAddress" type="ns0:hostOrderAddress" minOccurs="0"/>
+      <xsd:element name="workstation" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="consolidationLoc" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="orderTuType" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="owner" type="xsd:string"/>
+      <xsd:element name="shortAllocationAllowed" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="shortReleasingAllowed" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="shortShippingAllowed" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="automaticAllocationAllowed" type="xsd:boolean" minOccurs="0"/>
+      <xsd:element name="stopSequence" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="shipment" type="ns0:hostShipment" minOccurs="0"/>
+      <xsd:element name="capability" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="instruction" type="ns0:hostInstruction" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="orderLine" type="ns0:cpHostOrderLine" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="sandwichPallet" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="minOrderTUs" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="maxOrderTUs" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="wrapperProgram" type="xsd:int" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="hostOrderAddress">
+    <xsd:sequence>
+      <xsd:element name="addressId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="address" type="ns0:hostAddress" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="hostAddress">
+    <xsd:sequence>
+      <xsd:element name="contactPerson" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="addressLine1" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="addressLine2" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="addressLine3" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="city" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="state" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="postalCode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="country" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="phoneNumber1" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="phoneNumber2" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="phoneNumber3" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="email1" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="email2" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="email3" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="hostShipment">
+    <xsd:sequence>
+      <xsd:element name="shipmentId" type="xsd:string"/>
+      <xsd:element name="shippingDate" type="xsd:dateTime"/>
+      <xsd:element name="truckId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="sealingTag" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="hostInstruction">
+    <xsd:sequence>
+      <xsd:element name="text" type="xsd:string"/>
+      <xsd:element name="type" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="cpHostOrderLine">
+    <xsd:complexContent>
+      <xsd:extension base="ns0:hostOrderLine">
+        <xsd:sequence>
+          <xsd:element name="productDescription" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="hostOrderLine">
+    <xsd:sequence>
+      <xsd:element name="orderLineNumber" type="xsd:int"/>
+      <xsd:element name="orderedTuId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="productId" type="xsd:string"/>
+      <xsd:element name="productVersionId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="displayPickUomId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="minUomRoundingRule" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="minUomId" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="quantityOrdered" type="xsd:double"/>
+      <xsd:element name="expirationWindow" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="allocationToleranceWindow" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="fifoCutOffTolerance" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="attributeValue" type="ns0:hostAttributeValue" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="instruction" type="ns0:hostInstruction" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="loadBuildingEpisode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="loadBuldingGroup" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="loadBuildingRelatedEpisode" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="loadBuildingDisjointEpisode" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="hostAttributeValue">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="cpOrderMasterMessageResponse">
+    <xsd:complexContent>
+      <xsd:extension base="ns0:messageResponse">
+        <xsd:sequence/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="messageResponse">
+    <xsd:sequence>
+      <xsd:element name="messageHeader" type="ns0:messageHeader"/>
+      <xsd:element name="messageError" type="ns0:messageError"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="messageError">
+    <xsd:sequence>
+      <xsd:element name="code" type="xsd:int" minOccurs="0"/>
+      <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="orderMaster" type="ns0:orderMaster"/>
+  <xsd:element name="orderMasterResponse" type="ns0:orderMasterResponse"/>
+</xsd:schema>
